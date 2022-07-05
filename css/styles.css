@@ -70,7 +70,7 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #15c20f;
+  color: #181818;
   text-align: left;
   background-color: #fff;
 }
@@ -398,6 +398,7 @@ h6, .h6 {
 .lead {
   font-size: 1.25rem;
   font-weight: 300;
+  text-align: justify;
 }
 
 .display-1 {
@@ -10149,7 +10150,7 @@ h3 {
   font-size: 1.25rem;
 }
 .masthead .masthead-avatar {
-  width: 15rem;
+  width: 22.5rem;
 }
 
 @media (min-width: 992px) {
