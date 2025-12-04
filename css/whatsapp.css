@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .whatsapp-float {
     position: fixed;
     width: 60px;
@@ -32,4 +33,40 @@
         right: 20px;
         font-size: 25px;
     }
+=======
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    left: 20px;
+    background-color: #25d366; /* Color de WhatsApp */
+    color: #FFF;
+    border-radius: 50px; /* Hace el botón redondo */
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100; /* Asegura que esté por encima de otros elementos */
+    display: flex; /* Para centrar el ícono */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    transition: transform 0.3s ease-in-out; /* Animación al pasar el ratón */
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1); /* Agranda un poco al pasar el ratón */
+    text-decoration: none; /* Quita el subrayado del enlace */
+    color: #FFF; /* Mantiene el color del ícono blanco */
+}
+
+/* Media query para dispositivos móviles más pequeños */
+@media (max-width: 767px) {
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 25px;
+    }
+>>>>>>> 841f25bca62fbcffb7d895be2aa61667a7eb3543
 }
