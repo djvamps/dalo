@@ -59,11 +59,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 }
 
 header {
-<<<<<<< HEAD
-background-image: url(../images/dany_fondo.webp);
-=======
 background-image: url(../images/dany_fondo.jpg);
->>>>>>> 841f25bca62fbcffb7d895be2aa61667a7eb3543
 
 background-attachment: fixed;
 }
@@ -10265,15 +10261,33 @@ form .row:first-child .floating-label-form-group {
   padding-top: 5rem;
   padding-bottom: 5rem;
   background-color: #006F5F;
-<<<<<<< HEAD
-  background-image: url(../images/exagono_pen.webp);
-=======
   background-image: url(../images/exagono_pen.jpg);
->>>>>>> 841f25bca62fbcffb7d895be2aa61667a7eb3543
 	background-attachment: fixed;
   color: #fff;
 }
 
 .copyright {
   background-color: #29541D;
+}
+
+
+
+.masthead {
+  position: relative;
+  overflow: hidden;
+}
+
+/* contenedor de partículas */
+#particles-js {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* contenido encima de las partículas */
+.masthead .container {
+  position: relative;
+  z-index: 2;
 }
