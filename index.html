@@ -279,8 +279,9 @@
                         </div>
                         <br />
                         <!-- Mensaje de éxito o error -->
+                        <div id="alertBox" class="alert hide" role="alert">
                         <div id="formMessage"></div>
-
+                        </div>
                         <div class="form-group">
                             <button class="btn btn-primary btn-xl" id="sendMessageButton" type="submit">
                                 Enviar
@@ -309,61 +310,47 @@
     </style>
 
     <!-- EmailJS Script -->
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script>
-        (function () {
-            emailjs.init("O5Dh38LzJbxVHMxEP"); // Reemplaza con tu Public Key
-        })();
-
         document.getElementById("contactForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-            const formMessage = document.getElementById("formMessage");
-            const sendBtn = document.getElementById("sendMessageButton");
-
-            // Guardar texto original del botón
-            const originalText = sendBtn.innerHTML;
-
-            // Mostrar spinner en el botón
-            sendBtn.innerHTML = `<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Enviando...`;
-            sendBtn.disabled = true;
-
-            function showMessage(type, text) {
-                formMessage.innerHTML = `
-                <div class="alert alert-${type} mt-3 fade-message" role="alert">
-                    ${text}
-                </div>
-            `;
-                const alertBox = formMessage.querySelector(".alert");
-
-                // Fade in
-                setTimeout(() => alertBox.classList.add("show"), 50);
-
-                // Fade out después de 5 segundos
-                setTimeout(() => {
-                    alertBox.classList.remove("show");
-                    alertBox.classList.add("hide");
-                    setTimeout(() => { formMessage.innerHTML = ""; }, 500);
-                }, 5000);
-            }
-
-         // Reemplaza tu bloque de emailjs.sendForm actual por este:
-const contactForm = document.getElementById("contactForm");
-
-emailjs.sendForm("service_o32nurn", "template_cdw44pt", contactForm)
-    .then(function() {
-        showMessage("success", "✅ Tu mensaje ha sido enviado correctamente. ¡Gracias por contactarnos!");
-        contactForm.reset();
-    }, function(error) {
-        showMessage("danger", "❌ Ocurrió un error al enviar el mensaje. Inténtalo nuevamente.");
-        console.error("Error completo de EmailJS:", error);
-    })
-    .finally(() => {
-        // Restaurar botón
-        sendBtn.innerHTML = originalText;
-        sendBtn.disabled = false;
-    });
-});
-    </script>
+          event.preventDefault();
+      
+          const contactForm = document.getElementById("contactForm");
+          const sendBtn = document.getElementById("sendMessageButton"); // Asegúrate de que este ID coincida con tu botón
+          const alertBox = document.getElementById("alertBox"); // Asegúrate de que este ID coincida con tu contenedor de alertas
+          const formMessage = document.getElementById("formMessage");   // Asegúrate de que este ID coincida con el texto
+      
+          // Guardar estado original del botón
+          const originalText = sendBtn.innerHTML;
+          sendBtn.innerHTML = "Enviando...";
+          sendBtn.disabled = true;
+      
+          function showMessage(type, text) {
+            formMessage.innerHTML = text;
+            alertBox.classList.remove("hide", "alert-success", "alert-danger");
+            alertBox.classList.add("alert-" + type);
+      
+            setTimeout(() => {
+              alertBox.classList.add("hide");
+              setTimeout(() => { formMessage.innerHTML = ""; }, 500);
+            }, 5000);
+          }
+      
+          // Envío con EmailJS
+          emailjs.sendForm("service_o32nurn", "template_cdw44pt", contactForm)
+            .then(function () {
+              showMessage("success", "✅ Tu mensaje ha sido enviado correctamente. ¡Gracias por contactarnos!");
+              contactForm.reset();
+            }, function (error) {
+              showMessage("danger", "❌ Ocurrió un error al enviar el mensaje. Inténtalo nuevamente.");
+              console.error("Error completo de EmailJS:", error);
+            })
+            .finally(() => {
+              // Restaurar botón
+              sendBtn.innerHTML = originalText;
+              sendBtn.disabled = false;
+            });
+        });
+      </script>
 
     <!-- Footer-->
     <footer class="footer text-center">
